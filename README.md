@@ -1,5 +1,5 @@
 # eudyptula-tasks
-[X]  This is Task 01 of the Eudyptula Challenge
+[x]  This is Task 01 of the Eudyptula Challenge
 ------------------------------------------
 
 Write a Linux kernel module, and stand-alone Makefile, that when loaded

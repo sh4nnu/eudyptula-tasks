@@ -1,0 +1,73 @@
+$ make defconfig
+
+$ make -j 3 ARCH=x86_64
+
+$ sudo make modules_install
+before compiling:
+
+parallels@mint:~$ uname -a
+Linux mint 5.4.0-42-generic #46-Ubuntu SMP Fri Jul 10 00:24:02 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+parallels@mint:~$ uname -r
+5.4.0-42-generic
+
+
+# uname
+Linux
+# uname -r
+5.11.0-rc2+
+
+# uname -r
+5.11.0-rc2y+
+# uname -a
+Linux buildroot 5.11.0-rc2y+ #4 SMP Tue Jan 5 23:53:24 IST 2021 x86_64 GNU/Linux
+# uname 
+Linux
+
+
+
+
+
+parallels@mint:~/Desktop/linux/linux$ uname 
+Linux
+parallels@mint:~/Desktop/linux/linux$ uname -a
+Linux mint 5.4.0-42-generic #46-Ubuntu SMP Fri Jul 10 00:24:02 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+parallels@mint:~/Desktop/linux/linux$ uname -r
+5.4.0-42-generic
+
+
+parallels@mint:~$ uname 
+Linux
+parallels@mint:~$ uname -a
+Linux mint 5.11.0-rc2y+ #4 SMP Tue Jan 5 23:53:24 IST 2021 x86_64 x86_64 x86_64 GNU/Linux
+parallels@mint:~$ uname -r
+5.11.0-rc2y+
+
+
+
+
+parallels@mint:~/Desktop/linux/linux$ make kernelversion
+5.11.0-rc2
+
+
+
+/*
+$ mkinitramfs -o ramdisk.img
+
+$ qemu-system-x86_64 \
+  -kernel arch/x86_64/boot/bzImage \
+  -nographic \
+  -append "root=/dev/zero console=ttyS0" \
+  -initrd ramdisk.img \
+  -s -S
+
+sudo qemu-system-x86_64 \
+-kernel arch/x86_64/boot/bzImage \
+-append "console=ttyS0" \
+-nographic
+*/
+
+
+qemu-system-x86_64 -kernel arch/x86/boot/bzImage \
+-boot c  -hda ../buildroot/output/images/rootfs.ext4 \
+-append "root=/dev/sda rw console=ttyS0,115200 acpi=off nokaslr" \
+-serial stdio -display none

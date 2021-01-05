@@ -65,7 +65,7 @@ sudo qemu-system-x86_64 \
 -append "console=ttyS0" \
 -nographic
 */
-
+/* THE WORKING COMMAND */
 
 qemu-system-x86_64 -kernel arch/x86/boot/bzImage \
 -boot c  -hda ../buildroot/output/images/rootfs.ext4 \

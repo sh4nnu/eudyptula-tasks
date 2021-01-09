@@ -1,6 +1,6 @@
 # eudyptula-tasks
 - [x] Task 01
-- [ ] Task 02
+- [x] Task 02
 - [ ] Task 03
 - [ ] Task 04
 - [ ] Task 05

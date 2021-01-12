@@ -7,14 +7,12 @@ parallels@mint:~/Desktop/linux/linux$ uname -r
 5.4.0-42-generic
 
 
-
 # uname
 Linux
 # uname -a
-Linux buildroot 5.11.0-rc2y+ #1 SMP Wed Jan 6 20:34:21 IST 2021 x86_64 GNU/Linux
+Linux buildroot 5.11.0-rc2-00142-g9f1abbe97c08 #4 SMP Wed Jan 6 23:26:27 IST 2021 x86_64 GNU/Linux
 # uname -r
-5.11.0-rc2y+
-
+5.11.0-rc2-00142-g9f1abbe97c08
 
 
 

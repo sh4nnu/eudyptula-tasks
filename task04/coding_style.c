@@ -11,7 +11,10 @@ int do_work(int *my_int, int retval)
 
 	for (x = 0; x < *my_int; ++x)
 		udelay(10);
-	if (y < 10) // That was a long sleep, tell userspace about it
+	if (y < 10)
+		/*
+		 * That was a long sleep, tell userspace about it
+		 */
 		printk("We slept a long time!");
 	z = x * y;
 	return z;

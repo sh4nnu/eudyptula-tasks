@@ -1,0 +1,98 @@
+
+
+parallels@mint:~/Desktop/eudyptula/task05$ cat Makefile
+ifeq (${KDIR},)
+	KDIR := /lib/modules/$(shell uname -r)/build 
+endif
+obj-m +=usb2.o
+CFLAGS_usb2.o := -DDEBUG
+
+#@echo "in if" ${KDIR}
+
+
+
+#@echo "out if" ${KDIR}
+all:
+	@echo "KDIR =" ${KDIR}
+	make -C ${KDIR} M=$(shell pwd) modules
+
+clean: 
+	make -C ${KDIR} M=$(shell pwd) clean
+
+parallels@mint:~/Desktop/eudyptula/task05$ sudo cp usb2.ko  /lib/modules/5.4.0-42-generic/
+parallels@mint:~/Desktop/eudyptula/task05$ sudo depmod -a
+
+
+
+parallels@mint:~/Desktop/eudyptula/task05$ cat /lib/modules/5.4.0-42-generic/modules.alias | grep usb2
+alias platform:bcm-kona-usb2 phy_bcm_kona_usb2
+alias of:N*T*Cbrcm,kona-usb2-phyC* phy_bcm_kona_usb2
+alias of:N*T*Cbrcm,kona-usb2-phy phy_bcm_kona_usb2
+alias of:N*T*Cmarvell,pxa1928-usb-phyC* phy_pxa_28nm_usb2
+alias of:N*T*Cmarvell,pxa1928-usb-phy phy_pxa_28nm_usb2
+alias platform:samsung-usb2-phy phy_exynos_usb2
+alias usb:v0AB4p0011d*dc*dsc*dp*ic*isc*ip*in* esd_usb2
+...
+alias usb:v1164p0622d*dc*dsc*dp*ic*isc*ip*in* pvrusb2
+alias usb:v2040p2400d*dc*dsc*dp*ic*isc*ip*in* pvrusb2
+alias usb:v2040p2950d*dc*dsc*dp*ic*isc*ip*in* pvrusb2
+alias usb:v2040p2900d*dc*dsc*dp*ic*isc*ip*in* pvrusb2
+alias usb:v*p*d*dc*dsc*dp*ic03isc01ip02in* usb2
+
+
+parallels@mint:~/Desktop/eudyptula/task05$ tail -f /var/log/kern.log
+Feb 17 00:22:09 mint kernel: [ 3705.046175] usb 2-2: new full-speed USB device number 22 using uhci_hcd
+Feb 17 00:22:09 mint kernel: [ 3705.208594] usb 2-2: New USB device found, idVendor=203a, idProduct=fffe, bcdDevice= 1.01
+Feb 17 00:22:09 mint kernel: [ 3705.208596] usb 2-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+Feb 17 00:22:09 mint kernel: [ 3705.208597] usb 2-2: Product: Virtual USB1.1 HUB
+Feb 17 00:22:09 mint kernel: [ 3705.208598] usb 2-2: Manufacturer: Parallels
+Feb 17 00:22:09 mint kernel: [ 3705.208598] usb 2-2: SerialNumber: PW3.0
+Feb 17 00:22:09 mint kernel: [ 3705.209679] hub 2-2:1.0: USB hub found
+Feb 17 00:22:09 mint kernel: [ 3705.210608] hub 2-2:1.0: 15 ports detected
+Feb 17 00:22:09 mint kernel: [ 3705.531210] usb 2-2.6: new low-speed USB device number 23 using uhci_hcd
+Feb 17 00:22:09 mint kernel: [ 3705.639653] usb 2-2.6: New USB device found, idVendor=413c, idProduct=301a, bcdDevice= 1.00
+Feb 17 00:22:09 mint kernel: [ 3705.639655] usb 2-2.6: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+Feb 17 00:22:09 mint kernel: [ 3705.639656] usb 2-2.6: Product: Dell MS116 USB Optical Mouse
+Feb 17 00:22:09 mint kernel: [ 3705.639656] usb 2-2.6: Manufacturer: PixArt
+Feb 17 00:22:09 mint kernel: [ 3705.651633] input: PixArt Dell MS116 USB Optical Mouse as /devices/pci0000:00/0000:00:1d.0/usb2/2-2/2-2.6/2-2.6:1.0/0003:413C:301A.000E/input/input18
+Feb 17 00:22:09 mint kernel: [ 3705.651840] hid-generic 0003:413C:301A.000E: input,hidraw2: USB HID v1.11 Mouse [PixArt Dell MS116 USB Optical Mouse] on usb-0000:00:1d.0-2.6/input0
+Feb 17 00:22:28 mint kernel: [ 3705.663707] A USB Device was connected! - eudyptula-028aba07e56d
+Feb 17 00:22:28 mint kernel: [ 3724.372340] usb 2-2: USB disconnect, device number 22
+Feb 17 00:22:28 mint kernel: [ 3724.372345] usb 2-2.6: USB disconnect, device number 23
+:q
+Feb 17 00:23:58 mint kernel: [ 3814.189218] usb 2-2: new full-speed USB device number 24 using uhci_hcd
+Feb 17 00:23:58 mint kernel: [ 3814.350353] usb 2-2: New USB device found, idVendor=203a, idProduct=fffe, bcdDevice= 1.01
+Feb 17 00:23:58 mint kernel: [ 3814.350354] usb 2-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+Feb 17 00:23:58 mint kernel: [ 3814.350355] usb 2-2: Product: Virtual USB1.1 HUB
+Feb 17 00:23:58 mint kernel: [ 3814.350356] usb 2-2: Manufacturer: Parallels
+Feb 17 00:23:58 mint kernel: [ 3814.350357] usb 2-2: SerialNumber: PW3.0
+Feb 17 00:23:58 mint kernel: [ 3814.351444] hub 2-2:1.0: USB hub found
+Feb 17 00:23:58 mint kernel: [ 3814.352326] hub 2-2:1.0: 15 ports detected
+Feb 17 00:23:58 mint kernel: [ 3814.673064] usb 2-2.6: new low-speed USB device number 25 using uhci_hcd
+Feb 17 00:23:59 mint kernel: [ 3814.781360] usb 2-2.6: New USB device found, idVendor=413c, idProduct=301a, bcdDevice= 1.00
+Feb 17 00:23:59 mint kernel: [ 3814.781362] usb 2-2.6: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+Feb 17 00:23:59 mint kernel: [ 3814.781363] usb 2-2.6: Product: Dell MS116 USB Optical Mouse
+Feb 17 00:23:59 mint kernel: [ 3814.781364] usb 2-2.6: Manufacturer: PixArt
+Feb 17 00:23:59 mint kernel: [ 3814.792799] input: PixArt Dell MS116 USB Optical Mouse as /devices/pci0000:00/0000:00:1d.0/usb2/2-2/2-2.6/2-2.6:1.0/0003:413C:301A.000F/input/input19
+Feb 17 00:23:59 mint kernel: [ 3814.793001] hid-generic 0003:413C:301A.000F: input,hidraw2: USB HID v1.11 Mouse [PixArt Dell MS116 USB Optical Mouse] on usb-0000:00:1d.0-2.6/input0
+Feb 17 00:24:10 mint kernel: [ 3826.319147] usb 2-2: USB disconnect, device number 24
+Feb 17 00:24:10 mint kernel: [ 3826.319152] usb 2-2.6: USB disconnect, device number 25
+Feb 17 00:24:44 mint kernel: [ 3859.827084] usb 2-2: new full-speed USB device number 26 using uhci_hcd
+Feb 17 00:24:44 mint kernel: [ 3859.989532] usb 2-2: New USB device found, idVendor=203a, idProduct=fffe, bcdDevice= 1.01
+Feb 17 00:24:44 mint kernel: [ 3859.989534] usb 2-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+Feb 17 00:24:44 mint kernel: [ 3859.989535] usb 2-2: Product: Virtual USB1.1 HUB
+Feb 17 00:24:44 mint kernel: [ 3859.989535] usb 2-2: Manufacturer: Parallels
+Feb 17 00:24:44 mint kernel: [ 3859.989536] usb 2-2: SerialNumber: PW3.0
+Feb 17 00:24:44 mint kernel: [ 3859.990587] hub 2-2:1.0: USB hub found
+Feb 17 00:24:44 mint kernel: [ 3859.991530] hub 2-2:1.0: 15 ports detected
+Feb 17 00:24:44 mint kernel: [ 3860.307068] usb 2-2.6: new low-speed USB device number 27 using uhci_hcd
+Feb 17 00:24:44 mint kernel: [ 3860.415559] usb 2-2.6: New USB device found, idVendor=413c, idProduct=301a, bcdDevice= 1.00
+Feb 17 00:24:44 mint kernel: [ 3860.415560] usb 2-2.6: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+Feb 17 00:24:44 mint kernel: [ 3860.415562] usb 2-2.6: Product: Dell MS116 USB Optical Mouse
+Feb 17 00:24:44 mint kernel: [ 3860.415562] usb 2-2.6: Manufacturer: PixArt
+Feb 17 00:24:44 mint kernel: [ 3860.425900] input: PixArt Dell MS116 USB Optical Mouse as /devices/pci0000:00/0000:00:1d.0/usb2/2-2/2-2.6/2-2.6:1.0/0003:413C:301A.0010/input/input20
+Feb 17 00:24:44 mint kernel: [ 3860.426019] hid-generic 0003:413C:301A.0010: input,hidraw2: USB HID v1.11 Mouse [PixArt Dell MS116 USB Optical Mouse] on usb-0000:00:1d.0-2.6/input0
+Feb 17 00:24:49 mint kernel: [ 3864.764277] usb 2-2: USB disconnect, device number 26
+Feb 17 00:24:49 mint kernel: [ 3864.764282] usb 2-2.6: USB disconnect, device number 27
+Feb 17 00:25:44 mint kernel: [ 3909.306247] A USB Device was disconnected! - eudyptula-028aba07e56d
+

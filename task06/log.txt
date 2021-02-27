@@ -1,0 +1,41 @@
+root@mint:/home/parallels/Desktop/eudyptula/task06# ls
+hello.c   hello.mod    hello.mod.o  log.txt   modules.order
+hello.ko  hello.mod.c  hello.o      Makefile  Module.symvers
+root@mint:/home/parallels/Desktop/eudyptula/task06# lsmod | grep hello
+root@mint:/home/parallels/Desktop/eudyptula/task06# ls /dev | grep eudyptula
+root@mint:/home/parallels/Desktop/eudyptula/task06# insmod hello.ko
+root@mint:/home/parallels/Desktop/eudyptula/task06# lsmod | grep hello
+hello                  20480  0
+root@mint:/home/parallels/Desktop/eudyptula/task06# ls /dev | grep eudyptula
+eudyptula
+root@mint:/home/parallels/Desktop/eudyptula/task06# cat /dev/eudyptula
+028aba07e56droot@mint:/home/parallels/Desktop/eudyptula/task06# 
+root@mint:/home/parallels/Desktop/eudyptula/task06# echo "028aba07e56d" > /dev/eudyptula 
+root@mint:/home/parallels/Desktop/eudyptula/task06# echo "32" > /dev/eudyptula 
+bash: echo: write error: Invalid argument
+root@mint:/home/parallels/Desktop/eudyptula/task06# dmesg | tail
+[  742.336743] A USB Device was disconnected! - eudyptula-028aba07e56d
+[  743.099009] A USB Device was connected! - eudyptula-028aba07e56d
+[  745.749962] usb 1-3: new high-speed USB device number 3 using ehci-pci
+[  745.906835] usb 1-3: New USB device found, idVendor=203a, idProduct=fffa, bcdDevice= 1.00
+[  745.906836] usb 1-3: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[  745.906838] usb 1-3: Product: Virtual Printer (Print to PDF (Mac Desktop))
+[  745.906839] usb 1-3: Manufacturer: Parallels
+[  745.906839] usb 1-3: SerialNumber: TAG11d87aca0
+[  745.913903] usblp 1-3:1.0: usblp0: USB Unidirectional printer dev 3 if 0 alt 0 proto 1 vid 0x203A pid 0xFFFA
+[  916.294136] Hello World
+root@mint:/home/parallels/Desktop/eudyptula/task06# rmmod hello
+root@mint:/home/parallels/Desktop/eudyptula/task06# ls /dev | grep eudyptula
+root@mint:/home/parallels/Desktop/eudyptula/task06# lsmod | grep hello
+root@mint:/home/parallels/Desktop/eudyptula/task06# dmesg | tail
+[  743.099009] A USB Device was connected! - eudyptula-028aba07e56d
+[  745.749962] usb 1-3: new high-speed USB device number 3 using ehci-pci
+[  745.906835] usb 1-3: New USB device found, idVendor=203a, idProduct=fffa, bcdDevice= 1.00
+[  745.906836] usb 1-3: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[  745.906838] usb 1-3: Product: Virtual Printer (Print to PDF (Mac Desktop))
+[  745.906839] usb 1-3: Manufacturer: Parallels
+[  745.906839] usb 1-3: SerialNumber: TAG11d87aca0
+[  745.913903] usblp 1-3:1.0: usblp0: USB Unidirectional printer dev 3 if 0 alt 0 proto 1 vid 0x203A pid 0xFFFA
+[  916.294136] Hello World
+[  970.505660] Module unloaded
+root@mint:/home/parallels/Desktop/eudyptula/task06# 

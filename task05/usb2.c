@@ -20,7 +20,6 @@ static void __exit my_exit(void)
 {
 	pr_debug("A USB Device was disconnected! - eudyptula-028aba07e56d");
 }
-
 static struct usb_device_id usb_mouse_id_table[] = {
 { USB_INTERFACE_INFO(USB_INTERFACE_CLASS_HID,
 	USB_INTERFACE_SUBCLASS_BOOT,

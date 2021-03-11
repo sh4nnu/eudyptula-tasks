@@ -5,6 +5,7 @@
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/debugfs.h>
+#include <linux/jiffies.h>
 
 #define ID "028aba07e56d"
 #define ID_LEN 13 /* ID length */
@@ -47,6 +48,7 @@ static int __init my_init(void)
 {
 	dfs = debugfs_create_dir("eudyptula", NULL);
 	debugfs_create_file("id", 0666, dfs, NULL, &fops);
+	debugfs_create_u32("jiffies", 0444, dfs, (u32*)&jiffies);
 	pr_debug("Debugfs module loaded.");
 	return 0;
 }

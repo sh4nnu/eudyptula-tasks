@@ -1,0 +1,95 @@
+root@mint:/home/parallels# lsmod
+root@mint:/home/parallels# lsmod | grep hello
+root@mint:/home/parallels# ls /sys/kernel/debug
+acpi              error_injection     pkg_temp_thermal  split_huge_pages
+bdi               extfrag             pmc_core          suspend_stats
+block             fault_around_bytes  pm_genpd          swiotlb
+cec               frontswap           pm_qos            sync
+cleancache        gpio                pwm               tracing
+clear_warn_once   hid                 ras               usb
+clk               iosf_sb             regmap            virtio-ports
+device_component  kprobes             regulator         wakeup_sources
+devices_deferred  mce                 remoteproc        x86
+dma_buf           memcg_slabinfo      sched_debug       zswap
+dri               opp                 sched_features
+dynamic_debug     pinctrl             sleep_time
+root@mint:/home/parallels# ls /sys/kernel/debug | grep eudyptula
+root@mint:/home/parallels# lsmod | grep hello
+hello                  20480  0
+root@mint:/home/parallels# ls /sys/kernel/debug | grep eudyptula
+eudyptula
+root@mint:/home/parallels# cd /sys/kernel/debug/eudyptula/
+root@mint:/sys/kernel/debug/eudyptula# ls
+id
+root@mint:/sys/kernel/debug/eudyptula# cat id
+028aba07e56droot@mint:/sys/kernel/debug/eudyptula# echo "028aba7356d" > id
+bash: echo: write error: Invalid argument
+root@mint:/sys/kernel/debug/eudyptula# echo "028aba7e56d" > id
+bash: echo: write error: Invalid argument
+root@mint:/sys/kernel/debug/eudyptula# echo "028aba07e56d" > id
+
+
+
+// after adding jiffies file
+
+
+root@mint:/sys/kernel/debug# ls | grep eudyptula
+root@mint:/sys/kernel/debug# lsmod | grep hello
+root@mint:/sys/kernel/debug# lsmod | grep hello
+hello                  20480  0
+root@mint:/sys/kernel/debug# ls | grep eudyptula
+eudyptula
+root@mint:/sys/kernel/debug# ls eudyptula
+id  jiffies
+root@mint:/sys/kernel/debug# cat eudyptula/jiffies
+632821
+root@mint:/sys/kernel/debug# cat eudyptula/jiffies
+633306
+root@mint:/sys/kernel/debug# cat eudyptula/jiffies
+633551
+
+parallels@mint:~/Desktop/eudyptula/task08$ ls /sys/kernel/debug/eudyptula
+id  jiffies
+parallels@mint:~/Desktop/eudyptula/task08$ cat  /sys/kernel/debug/eudyptula/id
+028aba07e56dparallels@mint:~/Desktop/eudyptula/task08$ cat  /sys/kernel/debug/eudyptula/jiffies
+704183
+parallels@mint:~/Desktop/eudyptula/task08$
+
+// After adding foo file
+
+
+root@mint:/sys/kernel/debug# ls
+acpi              error_injection     pinctrl           sleep_time
+bdi               eudyptula           pkg_temp_thermal  split_huge_pages
+block             extfrag             pmc_core          suspend_stats
+cec               fault_around_bytes  pm_genpd          swiotlb
+cleancache        frontswap           pm_qos            sync
+clear_warn_once   gpio                pwm               tracing
+clk               hid                 ras               usb
+device_component  iosf_sb             regmap            virtio-ports
+devices_deferred  kprobes             regulator         wakeup_sources
+dma_buf           mce                 remoteproc        x86
+dri               memcg_slabinfo      sched_debug       zswap
+dynamic_debug     opp                 sched_features
+root@mint:/sys/kernel/debug# cd eudyptula/
+root@mint:/sys/kernel/debug/eudyptula# ls
+foo  id  jiffies
+root@mint:/sys/kernel/debug/eudyptula# cat foo
+root@mint:/sys/kernel/debug/eudyptula# echo "hi I am groot!" > foo
+root@mint:/sys/kernel/debug/eudyptula# cat foo
+hi I am groot!
+root@mint:/sys/kernel/debug/eudyptula# exit
+exit
+parallels@mint:~$ cat /sys/kernel/debug/eudyptula/foo
+hi I am groot!
+parallels@mint:~$ echo "hi" >  /sys/kernel/debug/eudyptula/foo
+bash: /sys/kernel/debug/eudyptula/foo: Permission denied
+parallels@mint:~$
+
+parallels@mint:~$ sudo rmmod hello
+[sudo] password for parallels:
+parallels@mint:~$ echo "hi" >  /sys/kernel/debug/eudyptula/foo
+bash: /sys/kernel/debug/eudyptula/foo: No such file or directory
+parallels@mint:~$ ls /sys/kernel/debug/ | grep eudyptula
+parallels@mint:~$
+

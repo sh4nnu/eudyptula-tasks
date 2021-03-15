@@ -1,0 +1,87 @@
+
+
+
+
+
+parallels@mint:~/Desktop/src/linux$ sudo make -j 3 ARCH=x86_64
+  SYNC    include/config/auto.conf.cmd
+*
+* Restart config...
+*
+*
+
+
+
+
+    ....
+
+  CPUSTR  arch/x86/boot/cpustr.h
+  CC      arch/x86/boot/cpu.o
+  MKPIGGY arch/x86/boot/compressed/piggy.S
+  AS      arch/x86/boot/compressed/piggy.o
+  LD      arch/x86/boot/compressed/vmlinux
+  ZOFFSET arch/x86/boot/zoffset.h
+  OBJCOPY arch/x86/boot/vmlinux.bin
+  AS      arch/x86/boot/header.o
+  LD      arch/x86/boot/setup.elf
+  OBJCOPY arch/x86/boot/setup.bin
+  BUILD   arch/x86/boot/bzImage
+Kernel: arch/x86/boot/bzImage is ready  (#7)
+
+
+parallels@mint:~/Desktop/src/linux$ sudo make modules_install
+[sudo] password for parallels:         
+  INSTALL drivers/thermal/intel/x86_pkg_temp_thermal.ko
+  INSTALL fs/efivarfs/efivarfs.ko
+  INSTALL net/ipv4/netfilter/iptable_nat.ko
+  INSTALL net/ipv4/netfilter/nf_log_arp.ko
+  INSTALL net/ipv4/netfilter/nf_log_ipv4.ko
+  INSTALL net/ipv6/netfilter/nf_log_ipv6.ko
+  INSTALL net/netfilter/nf_log_common.ko
+  INSTALL net/netfilter/xt_LOG.ko
+  INSTALL net/netfilter/xt_MASQUERADE.ko
+  INSTALL net/netfilter/xt_addrtype.ko
+  INSTALL net/netfilter/xt_mark.ko
+  INSTALL net/netfilter/xt_nat.ko
+  DEPMOD  5.12.0-rc1-next-20210302
+
+parallels@mint:~/Desktop/src/linux$ qemu-system-x86_64 -kernel arch/x86/boot/bzImage -boot c  -hda ../buildroot/output/images/rootfs.ext4 -append "root=/dev/sda rw console=ttyS0,115200 acpi=off nokaslr" -serial stdio -display none
+WARNING: Image format was not specified for '../buildroot/output/images/rootfs.ext4' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+[    0.000000] Linux version 5.12.0-rc1-next-20210302 (root@mint) (gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #7 SMP Tue Mar 2 12:13:37 IST 2021
+[    0.000000] Command line: root=/dev/sda rw console=ttyS0,115200 acpi=off nokaslr
+[    0.000000] x86/fpu: x87 FPU will use FXSAVE
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+...
+...
+[    2.988778] Run /sbin/init as init process
+[    3.180470] mount (67) used greatest stack depth: 14216 bytes left
+[    3.222001] EXT4-fs (sda): re-mounted. Opts: (null). Quota mode: none.
+[    3.223000] ext4 filesystem being remounted at / supports timestamps until 2038 (0x7fffffff)
+Starting syslogd: OK
+Starting klogd: OK
+Running sysctl: [    3.617025] find (88) used greatest stack depth: 14184 bytes left
+OK
+[    3.630475] S02sysctl (86) used greatest stack depth: 14104 bytes left
+Initializing random number generator: OK
+Saving random seed: [    3.823341] random: dd: uninitialized urandom read (512 bytes read)
+[    3.844472] dd (102) used greatest stack depth: 13448 bytes left
+OK
+Starting network: OK
+
+Welcome to Buildroot
+buildroot login: [    9.327980] random: crng init done
+
+Welcome to Buildroot
+buildroot login: root
+# uname -a
+Linux buildroot 5.12.0-rc1-next-20210302 #7 SMP Tue Mar 2 12:13:37 IST 2021 x86_64 GNU/Linux
+
+# exit
+
+
+buildroot login: qemu-system-x86_64: terminating on signal 2
+parallels@mint:~/Desktop/src/linux$ 
+

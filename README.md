@@ -173,7 +173,6 @@ Yes, so simple, and yet, it's a bit tricky.  As a hint, go read chapter
 14 of the book, "Linux Device Drivers, 3rd edition."  Don't worry, it's
 free, and online, no need to go buy anything.
 
-
 This is Task 06 of the Eudyptula Challenge
 ------------------------------------------
 
@@ -206,7 +205,6 @@ The tasks this time are:
 
 As you will be putting your id into the kernel module, of course you
 haven't forgotten it, but just to be safe, it's YOURID
-
 
 This is Task 07 of the Eudyptula Challenge
 ------------------------------------------

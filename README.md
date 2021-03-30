@@ -173,6 +173,7 @@ Yes, so simple, and yet, it's a bit tricky.  As a hint, go read chapter
 14 of the book, "Linux Device Drivers, 3rd edition."  Don't worry, it's
 free, and online, no need to go buy anything.
 
+
 This is Task 06 of the Eudyptula Challenge
 ------------------------------------------
 
@@ -236,3 +237,4 @@ do it.
 As always, please respond to this challenge with your id.  I know you
 know what it is.  I'll not even include it this time, I trust you.
 Don't make me feel that is a mistake.
+

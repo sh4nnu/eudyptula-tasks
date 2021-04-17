@@ -1,0 +1,73 @@
+
+
+
+➜  kernel pwd 
+/sys/kernel
+➜  kernel ls
+boot_params  debug         irq                 kexec_loaded  notes          rcu_normal  software_nodes  uevent_seqnum
+cgroup       fscaps        kexec_crash_loaded  livepatch     profiling      security    tracing         vmcoreinfo
+config       iommu_groups  kexec_crash_size    mm            rcu_expedited  slab        uevent_helper
+➜  kernel lsmod | grep hello
+➜  kernel ls
+boot_params  debug      iommu_groups        kexec_crash_size  mm         rcu_expedited  slab            uevent_helper
+cgroup       eudyptula  irq                 kexec_loaded      notes      rcu_normal     software_nodes  uevent_seqnum
+config       fscaps     kexec_crash_loaded  livepatch         profiling  security       tracing         vmcoreinfo
+➜  kernel lsmod | grep hello  
+hello                  24576  0
+➜  kernel ls eudyptula 
+foo  id  jiffies
+➜  kernel cd eudyptula 
+➜  eudyptula whoami
+shannu
+➜  eudyptula cat id
+028aba07e56d%                                                                                                         
+➜  eudyptula cat foo 
+➜  eudyptula cat jiffies 
+4294964740
+➜  eudyptula cat jiffies 
+4294965397
+➜  eudyptula cat jiffies
+4294965788
+➜  eudyptula sudo su
+[sudo] password for shannu:         
+root@shannu-OMEN-by-HP-Laptop:/sys/kernel/eudyptula# whoami
+root
+root@shannu-OMEN-by-HP-Laptop:/sys/kernel/eudyptula# cat id
+028aba07e56droot@shannu-OMEN-by-HP-Laptop:/sys/kernel/eudyptula# cat jiffies
+4294970901
+root@shannu-OMEN-by-HP-Laptop:/sys/kernel/eudyptula# echo "test1" > foo
+root@shannu-OMEN-by-HP-Laptop:/sys/kernel/eudyptula# cat foo
+test1
+root@shannu-OMEN-by-HP-Laptop:/sys/kernel/eudyptula# echo "test2" > id
+bash: echo: write error: Invalid argument
+root@shannu-OMEN-by-HP-Laptop:/sys/kernel/eudyptula# echo "028aba07e56d" > id
+root@shannu-OMEN-by-HP-Laptop:/sys/kernel/eudyptula# echo "028abdd56d" > id
+bash: echo: write error: Invalid argument
+root@shannu-OMEN-by-HP-Laptop:/sys/kernel/eudyptula# exit
+exit
+➜  eudyptula whoami
+shannu
+➜  eudyptula cat id
+028aba07e56d%                                                                                                        
+➜  eudyptula echo "028aba07e56d" > id  
+zsh: permission denied: id
+➜  eudyptula cat foo                 
+test1
+➜  eudyptula echo "test2" > foo        
+zsh: permission denied: foo
+➜  eudyptula ls
+foo  id  jiffies
+➜  eudyptula 
+➜  eudyptula ls
+foo  id  jiffies
+➜  eudyptula cat id
+028aba07e56d%                                                                                                         
+➜  eudyptula lsmod | grep hello
+➜  eudyptula cd ..
+➜  kernel ls
+boot_params  debug         irq                 kexec_loaded  notes          rcu_normal  software_nodes  uevent_seqnum
+cgroup       fscaps        kexec_crash_loaded  livepatch     profiling      security    tracing         vmcoreinfo
+config       iommu_groups  kexec_crash_size    mm            rcu_expedited  slab        uevent_helper
+➜  kernel lsmod | grep hello
+
+

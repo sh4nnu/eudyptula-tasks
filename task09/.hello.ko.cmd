@@ -1,0 +1,1 @@
+cmd_/home/shannu/Desktop/eudyptula-tasks/task09/hello.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000  --build-id  -T ./scripts/module-common.lds -o /home/shannu/Desktop/eudyptula-tasks/task09/hello.ko /home/shannu/Desktop/eudyptula-tasks/task09/hello.o /home/shannu/Desktop/eudyptula-tasks/task09/hello.mod.o;  true

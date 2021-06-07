@@ -7,8 +7,8 @@
 - [x] Task 06
 - [x] Task 07
 - [x] Task 08
-- [ ] Task 09
-- [ ] Task 10
+- [x] Task 09
+- [x] Task 10
 - [ ] Task 11
 - [ ] Task 12
 - [ ] Task 13
